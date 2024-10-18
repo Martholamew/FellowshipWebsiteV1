@@ -9,8 +9,20 @@
         }
         const data = await response.json(); // Parse the JSON data
         console.log(data);
-        
-        document.getElementById(div).innerHTML = "Number of plays "+data.response.data[3].total_plays+secondsToHms(data.response.data[3].total_time);;
+
+        const plays = document.createElement("h5");
+        const playsContent = document.createTextNode("Number of plays "+data.response.data[3].total_plays);
+        plays.appendChild(playsContent);
+
+        const time = document.createElement("h5");
+        const timeContent = document.createTextNode(secondsToHms(data.response.data[3].total_time));
+        time.appendChild(timeContent);
+
+        const element = document.getElementById(div);
+        element.appendChild(plays);
+        element.appendChild(time);
+
+        //document.getElementById(div).innerHTML = "Number of plays "+data.response.data[3].total_plays+secondsToHms(data.response.data[3].total_time);;
 
     } catch (error) {
         console.error('There has been a problem with your fetch operation:', error);
@@ -26,6 +38,6 @@ function secondsToHms(d) {
     var hDisplay = h > 0 ? h + (h == 1 ? " hour, " : " hours, ") : "";
     var mDisplay = m > 0 ? m + (m == 1 ? " minute, " : " minutes, ") : "";
     var sDisplay = s > 0 ? s + (s == 1 ? " second" : " seconds") : "";
-    return "</br>"+hDisplay + mDisplay + sDisplay ; 
+    return hDisplay + mDisplay + sDisplay ; 
 }
 
