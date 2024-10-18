@@ -1,6 +1,6 @@
  // Function to perform the GET request
  async function getNumberOfPlays(div,ratingKey) {
-    const url = 'http://localhost:8080/tautulli/playcount?ratingKey='+ratingKey; // Example API endpoint
+    const url = 'https://fellowshipbackend.onrender.com/tautulli/playcount?ratingKey='+ratingKey; // Example API endpoint
 
     try {
         const response = await fetch(url); // Making the GET request
