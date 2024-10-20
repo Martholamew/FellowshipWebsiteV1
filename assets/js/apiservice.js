@@ -5,16 +5,12 @@ const apiservice = {
       : "https://fellowshipbackend.onrender.com",
   
     // GET request method
-    async get(endpoint) {
-      console.log(`${this.baseUrl}${endpoint}`);
-      
+    async get(endpoint) {      
       try {
         const response = await fetch(`${this.baseUrl}${endpoint}`, {
           method: "GET",
         });
-  
-        // Check if the response is OK (status code 200-299)
-        if (!response.ok) {
+          if (!response.ok) {
           throw new Error(`Error: ${response.status} ${response.statusText}`);
         }
   
@@ -23,23 +19,23 @@ const apiservice = {
         return data;
       } catch (error) {
         console.error("Error:", error);
-        // Implement proper error handling logic here (e.g., re-throw or return an error object)
-        throw error; // You can return a value here depending on how you want to handle errors
+        throw error; 
       }
     },
   
-    // POST request method (refactored with async/await)
+    // POST request method 
     async post(endpoint, data) {
+      console.log("here is the endpoint "+endpoint);
+      console.log("here is the data "+data);
       try {
         const response = await fetch(`${this.baseUrl}${endpoint}`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(data), // Send the payload (data)
+          body: JSON.stringify(data), 
         });
   
-        // Check if the response is OK (status code 200-299)
         if (!response.ok) {
           throw new Error(`Error: ${response.status} ${response.statusText}`);
         }
@@ -49,8 +45,7 @@ const apiservice = {
         return responseData;
       } catch (error) {
         console.error("Error:", error);
-        // Implement proper error handling logic here
-        throw error; // You can return an error object here instead of re-throwing
+        throw error; 
       }
     }
   };

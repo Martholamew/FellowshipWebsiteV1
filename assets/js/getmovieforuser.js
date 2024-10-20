@@ -5,6 +5,8 @@ const data = {
     userId: 102
 };
 
-apiservice.post(endpoints.movieByUser,data).then(responseText => {
-    console.log(responseText);
- })
+document.addEventListener('DOMContentLoaded', () => { 
+    apiservice.post(endpoints.movieByUser,data).then(responseText => {
+        console.log(responseText);
+    })
+})

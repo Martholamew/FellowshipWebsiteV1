@@ -6,6 +6,7 @@
 -->
 
 <html>
+
 	<head>
 		<title>Fellowship of the Movie Club</title>
 		<meta charset="utf-8" />
@@ -16,108 +17,90 @@
 	<body class="landing is-preload">
 
 		<!-- Page Wrapper -->
-			<div id="page-wrapper">
+		<div id="page-wrapper">
 
-				<!-- Header -->
-					<header id="header" class="alt">
-						<h1><a href="index.html">Fellowship</a></h1>
-						<nav id="nav">
-							<ul>
-								<li class="special">
-									<a href="#menu" class="menuToggle"><span>Menu</span></a>
-									<div id="menu">
-										<ul>
-											<li><a href="index.html">Home</a></li>
-											<li><a href="addmovie.html">Add This Weeks Movie</a></li>
-											<li><a href="elements.html">Elements</a></li>
-											<li><a href="signup.html">Sign Up</a></li>
-											<li><a href="login.html">Log In</a></li>
-											<li><a href="#" onclick="logout()">Log Out</a></li>
+			<!-- Header -->
+			<header id="header" class="alt">
+				<h1><a href="index.html">Fellowship</a></h1>
+				<nav id="nav">
+					<ul>
+						<li class="special">
+							<a href="#menu" class="menuToggle"><span>Menu</span></a>
+							<div id="menu">
+								<ul>
+									<li><a href="index.html">Home</a></li>
+									<li><a href="addmovie.html">Add This Weeks Movie</a></li>
+									<li><a href="elements.html">Elements</a></li>
+									<li><a href="signup.html">Sign Up</a></li>
+									<li><a href="login.html">Log In</a></li>
+									<li><a href="#" id="logout">Log Out</a></li>
+								</ul>
+							</div>
+						</li>
+					</ul>
+				</nav>
+			</header>
 
-										</ul>
-									</div>
-								</li>
-							</ul>
-						</nav>
-					</header>
+			<!-- Banner -->
+			<section id="banner">
+				<div class="inner">
+					<h2>Fellowship of the Movie Club</h2>
+					<p>Welcome to the movie club. We have specifically handpicked these selections for maximum entertainment<br />
+					</p>
+					<p><br />
+					</p>
+				</div>
+				<p >The theme for this week is Martial arts. Please enjoy our selections.</p>
+			</section>
 
-				<!-- Banner -->
-					<section id="banner">
-						<div class="inner">
-							<h2>Fellowship of the Movie Club</h2>
-							<p>Welcome to the movie club. We have specifically handpicked these selections for maximum entertainment<br />
-							</p>
-							<p><br />
-							</p>
+			<!-- Two -->
+			<section id="two" class="wrapper alt style2">
+				<section class="spotlight">
+					<div id="overview"></div>
+					<div class="image"><img id="movieImage0" src="" alt="" /></div><div class="content">
+						<h3 id="userPick">Matt's Pick</h3>
+						<h2 id="movieTitle0">Movie Title</h2>
+						<div id="numberofplays0"></div>
+						<p id="movieDescription0">Movie Description</p>
+					</div>
+				</section>
+				<section class="spotlight">
+					<div class="image"><img id="movieImage1" src="images/thisweeksfilms/10152024/operationcondor.jpg" alt="" /></div><div class="content">
+						<h3>Grant's Pick</h3>
+						<h2 id="movieTitle1">Operation Condor</h2>
+						<div id="numberofplays1"></div>
+							<P id="movieDescription1">Hired by a Spanish baron, Hong Kong treasure hunter Jackie, a.k.a. "Asian Hawk" and his entourage seek WWII Nazi gold buried in the Sahara Desert.</P>							
 						</div>
-						<p >The theme for this week is Martial arts. Please enjoy our selections.</p>
-					</section>
+				</section>
+				<section class="spotlight">
+					<div class="image"><img id="movieImage2" src="images/thisweeksfilms/10152024/wheelsonmeals.jpg" alt="" /></div><div class="content">
+						<h3>Adams's Pick</h3>
+						<h2 id="movieTitle2">Wheels on Meals</h2>
+						<div id="numberofplays2"></div>
+						<p id="movieDescription2">Cousins Thomas and David, owners of a mobile restaurant, team up with their friend Moby, a bumbling private detective, to save the beautiful Sylvia, a pickpocket.</p>
+					</div>
+				</section>
+			</section>
 
+			<!-- Footer -->
+			<footer id="footer">
+				<ul class="icons">
+					<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+					<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+					<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+					<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+					<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+				</ul>
+				<ul class="copyright">
+					<li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+				</ul>
+			</footer>
 			
-
-				<!-- Two -->
-					<section id="two" class="wrapper alt style2">
-						<section class="spotlight">
-							<div id="overview"></div>
-							<div class="image"><img id="movieImage1" src="images/thisweeksfilms/10152024/36chambers.jpg" alt="" /></div><div class="content">
-								<h3>Matt's Pick</h3>
-								<h2 id="movieTitle1">The 36th Chamber of Shaolin</h2>
-								<div id="numberofplays0"></div>
-								<p id="movieDescription1">The anti-Ching patriots, under the guidance of Ho Kuang-han, have secretly set up their base in Canton, disguised as school masters. During a brutal Manchu attack, Lui manages to escape, and devotes himself to learning the martial arts in order to seek revenge.
-								</p>
-							</div>
-						</section>
-						<section class="spotlight">
-							<div class="image"><img src="images/thisweeksfilms/10152024/operationcondor.jpg" alt="" /></div><div class="content">
-								<h3>Grant's Pick</h3>
-								<h2 id="movieTitle2">Operation Condor</h2>
-								<div id="numberofplays1"></div>
-								
-									<P>Hired by a Spanish baron, Hong Kong treasure hunter Jackie, a.k.a. "Asian Hawk" and his entourage seek WWII Nazi gold buried in the Sahara Desert.
-
-									</P>							
-								</div>
-						</section>
-						<section class="spotlight">
-							<div class="image"><img src="images/thisweeksfilms/10152024/wheelsonmeals.jpg" alt="" /></div><div class="content">
-								<h3>Adams's Pick</h3>
-								<h2 id="movieTitle3">Wheels on Meals</h2>
-								<div id="numberofplays2"></div>
-
-								<p>Cousins Thomas and David, owners of a mobile restaurant, team up with their friend Moby, a bumbling private detective, to save the beautiful Sylvia, a pickpocket.
-
-
-								</p>
-							</div>
-						</section>
-					</section>
-
-				
-
-				<!-- Footer -->
-					<footer id="footer">
-						<ul class="icons">
-							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-							<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
-							<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-						</ul>
-						<ul class="copyright">
-							<li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-						</ul>
-					</footer>
-
-			</div>
-			<input type="hidden" id="param1" value="38579" />
-			<input type="hidden" id="param2" value="38579" />
-			<input type="hidden" id="param3" value="38579" />
-
+		</div>
 
 		<!-- Scripts -->
 		<script src="assets/js/logout.js"></script>
-		<script type="module" src="assets/js/getmovieforuser.js"></script>
-		<script type="module" src="assets/js/numberofplays.js"></script>
+		<script type="module" src="assets/js/mainmoviepage.js"></script>
 		<script src="assets/js/jquery.min.js"></script>
 		<script src="assets/js/jquery.scrollex.min.js"></script>
 		<script src="assets/js/jquery.scrolly.min.js"></script>

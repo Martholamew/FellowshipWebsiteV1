@@ -102,7 +102,7 @@ function save(){
     userId: sessionStorage.getItem("userId"),
     originalTitle: movies[currentIndex].title,
     overview: movies[currentIndex].overview,
-    posterURL: endpoints.tmdbPosterUrl+movies[currentIndex].title
+    posterURL: endpoints.tmdbPosterUrl+movies[currentIndex].poster_path
   };
   apiservice.post(endpoints.saveMovie, data).then(responseText => {
     if(responseText === true || responseText === "true") {

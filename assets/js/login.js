@@ -13,11 +13,9 @@ document.getElementById('dataform').addEventListener('submit', function (event) 
             alert("Thanks for loggin in "+ name);
             sessionStorage.setItem("userName", name);
             sessionStorage.setItem("userId", responseText.id);
-            console.log(responseText.id);
         }
         else{
             alert("You havent signed up "+name+ ", how about you do?")
         }
-    }
-)
+    })
 });
