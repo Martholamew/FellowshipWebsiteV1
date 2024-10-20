@@ -4,7 +4,9 @@ const endpoints = {
     saveMovie: "saveMovie",
     searchMovie:"searchmovie",
     movieByUser: "movieByUser",
-    userLogin: "userslogin"
+    userLogin: "userslogin",
+    userSignUp: "userssignup",
+    tautulliPlayCount: "tautulli/playcount?ratingKey="
 };
 
 export default endpoints;

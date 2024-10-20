@@ -1,29 +1,27 @@
- // Function to perform the GET request
- async function getNumberOfPlays(div,ratingKey) {
-    const url = 'https://fellowshipbackend.onrender.com/tautulli/playcount?ratingKey='+ratingKey; 
+import apiservice from "./apiservice.js";
+import endpoints from "./endpoints.js";
 
-    try {
-        const response = await fetch(url); // Making the GET request
-        if (!response.ok) { // Check if the response is successful
-            throw new Error('Network response was not ok');
-        }
-        const data = await response.json(); // Parse the JSON data
+document.addEventListener('DOMContentLoaded', () => {
+    const ratingKey1 = document.getElementById('param1').value;
+    const ratingKey2 = document.getElementById('param2').value;
+    const ratingKey3 = document.getElementById('param3').value;
+    const ratingKeys = new Array(ratingKey1, ratingKey2, ratingKey3);
 
-        const plays = document.createElement("h5");
-        const playsContent = document.createTextNode("Number of plays "+data.response.data[3].total_plays);
-        plays.appendChild(playsContent);
+    for(let i=0;i<ratingKeys.length;i++){
+        apiservice.get(endpoints.tautulliPlayCount+ratingKeys[i]).then(data => {
+            const plays = document.createElement("h5");
+            const playsContent = document.createTextNode("Number of plays "+data.response.data[3].total_plays);
+            plays.appendChild(playsContent);
 
-        const time = document.createElement("h5");
-        const timeContent = document.createTextNode(secondsToHms(data.response.data[3].total_time));
-        time.appendChild(timeContent);
-
-        const element = document.getElementById(div);
-        element.appendChild(plays);
-        element.appendChild(time);
-    } catch (error) {
-        console.error('There has been a problem with your fetch operation:', error);
+            const time = document.createElement("h5");
+            const timeContent = document.createTextNode(secondsToHms(data.response.data[3].total_time));
+            time.appendChild(timeContent);
+            const element = document.getElementById("numberofplays"+i);//this seems not ideal
+            element.appendChild(plays);
+            element.appendChild(time);
+        })
     }
-}
+});
 
 function secondsToHms(d) {
     d = Number(d);
