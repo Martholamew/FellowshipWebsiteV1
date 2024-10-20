@@ -6,7 +6,7 @@ const endpoints = {
     movieByUser: "movieByUser",
     userLogin: "userslogin",
     userSignUp: "userssignup",
-    tautulliPlayCount: "tautulli/playcount?ratingKey="
+    tautulliPlayCount: "tautulli/playcount?movieTitle="
 };
 
 export default endpoints;

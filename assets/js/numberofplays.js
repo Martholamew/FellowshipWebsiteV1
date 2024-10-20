@@ -2,11 +2,10 @@ import apiservice from "./apiservice.js";
 import endpoints from "./endpoints.js";
 
 document.addEventListener('DOMContentLoaded', () => {
-    const ratingKey1 = document.getElementById('param1').value;
-    const ratingKey2 = document.getElementById('param2').value;
-    const ratingKey3 = document.getElementById('param3').value;
-    const ratingKeys = new Array(ratingKey1, ratingKey2, ratingKey3);
-
+    const movieTitle1 = document.getElementById('movieTitle1').textContent;
+    const movieTitle2 = document.getElementById('movieTitle2').textContent;
+    const movieTitle3 = document.getElementById('movieTitle3').textContent;
+   const ratingKeys = new Array(movieTitle1, movieTitle2, movieTitle3);
     for(let i=0;i<ratingKeys.length;i++){
         apiservice.get(endpoints.tautulliPlayCount+ratingKeys[i]).then(data => {
             const plays = document.createElement("h5");
