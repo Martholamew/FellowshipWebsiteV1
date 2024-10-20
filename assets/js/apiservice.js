@@ -2,7 +2,7 @@
 const apiservice = {
     baseUrl: window.location.hostname === "localhost"
       ? "http://localhost:8080/"
-      : "https://fellowshipbackend.onrender.comé",
+      : "https://fellowshipbackend.onrender.com/",
   
     // GET request method
     async get(endpoint) {      
