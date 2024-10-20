@@ -6,14 +6,14 @@
 -->
 <html>
 	<head>
-		<title>Login</title>
+		<title>Add a Movie</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/moviedialog.css" />
+
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
-
-    
 	<body class="is-preload">
 
 		<!-- Page Wrapper -->
@@ -43,21 +43,19 @@
 				<!-- Main -->
 					<article id="main">
 						<header>
-							<h2>Login Page</h2>
-							<p>If you are a member of the fellowship, please log in to access all features</p>
+							<h2>Add Movies</h2>
+							<p>This is a work in progress. Please enter the movie you would like to add to this weeks selection</p>
 						</header>
 						<section class="wrapper style5">
 							<div class="inner">
 								<section>
-									<h4>Enter your login information</h4>
-									<form id="dataform" >
+									<h4 id="subheaderentermovie">Enter your choice</h4>
+									<form id="searchMovieForm" >
 										<div class="row gtr-uniform">
 											<div class="col-6 col-12-xsmall">
-												<input type="text" name="name" id="name" value="" placeholder="Name" />
+												<input type="text" name="moviename" id="movieInput" value="" placeholder="Movie Name" />
 											</div>
-											<div class="col-6 col-12-xsmall">
-												<input type="email" name="email" id="email" value="" placeholder="Email" />
-											</div>
+									
 											<div class="col-12">
 												<ul class="actions">
 													<li>	<button type="submit">Submit</button>		
@@ -69,7 +67,8 @@
 									</form>
 								</section>
 
-								
+							</div>
+						</section>
 					</article>
 
 				<!-- Footer -->
@@ -85,13 +84,39 @@
 							<li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
 						</ul>
 					</footer>
-                    			</div>
-           
+
+			</div>
+  <!-- Dialog structure -->
+  <dialog id="myDialog"> 
+	<h2 style="color: black;" id="originalTitle"></h2>
+	<div class="content">
+
+		<img id="moviePoster" src="" alt="Image" style="max-width: 10%; height: auto; display: none;">
+		<h5 style="color: black;" id="movieOverview"></h5>
+	</div>
+    <div class="button-container">
+		<button  class="dialog-btn" id="previousitem">Previous</button>
+		<button  class="dialog-btn" id="nextItem">Next</button>
+        <button class="dialog-btn" id="showConfirmDialog">Select Film</button> <!-- Button to show confirmation dialog -->
+       	<button class="dialog-btn" id="closeDialog">Close</button>
+    </div>
+
+  </dialog>
+
+  <div id="overlay"></div> <!-- Overlay background -->
+	<div id="confirmationDialog" class="confirmation-dialog" style="display: none;">
+    <h5 style="color: black;" id="confirmMovieText">Are you sure you want to select this movie?</h5>
+    <div style="display: flex; justify-content: space-between;">
+        <button class="dialog-btn" id="confirmSave">Yes</button>
+        <button class="dialog-btn" id="cancelSave">No</button>
+	</div>
+</div>
+    <h5 style="color: black;" id="confirmMovieText">Are you sure you want to select this movie?</h5>
+
+
 
 		<!-- Scripts -->
-          
-            <script src="assets/js/accessdisplay.js"></script>
-            <script src="assets/js/checkuserregistration.js"></script>
+		 	<script type ="module" src="assets/js/dialogforsearchingmovie.js"></script> 
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.scrollex.min.js"></script>
 			<script src="assets/js/jquery.scrolly.min.js"></script>

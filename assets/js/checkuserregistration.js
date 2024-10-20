@@ -1,3 +1,6 @@
+import apiservice from "./apiservice.js";
+import endpoints from "./endpoints.js";
+
 document.getElementById('dataform').addEventListener('submit', function (event) {
     event.preventDefault(); // Prevent default form submission
     const data = {
@@ -16,20 +19,19 @@ document.getElementById('dataform').addEventListener('submit', function (event) 
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
-        return response.text();
+        return response.json();
     })
     .then(responseText => {
         var name =document.getElementById('name').value;
-
-        if(responseText=="true"){
+       if(responseText.length!=0){
             alert("Thanks for loggin in "+ name);
-            sessionStorage.setItem("userName", name)
+            sessionStorage.setItem("userName", name);
+            sessionStorage.setItem("userId", responseText.id);
+            console.log(responseText.id);
         }
         else{
             alert("You havent signed up "+name+ ", how about you do?")
         }
-        sessionStorage.setItem("registereduser", responseText);
-        location.reload();
     })
     .catch((error) => {
         console.error('Error:', error);

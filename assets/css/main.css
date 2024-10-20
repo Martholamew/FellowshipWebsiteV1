@@ -3997,3 +3997,26 @@ input, select, textarea {
 	body.is-mobile.landing #footer {
 		background-color: #1d242a;
 	}
+	
+
+    /* Darker action button */
+    .dialog-btn {
+      background-color: #f1f6fa; 
+      color: rgb(12, 0, 0);
+	  border-radius: 3px;
+	  border: 0;
+	  box-shadow: inset 0 0 0 2px #170000;
+      cursor: pointer;
+    }
+
+    /* Optional: Hover effect for buttons */
+    .dialog-btn:hover {
+      background-color: #b2b5b8; 
+      color: #020000;
+    }
+
+    /* Optional: Active state for buttons */
+    .dialog-btn:active {
+      background-color: #b1b5bd; /* Darkest on click */
+      color: #ffffff;
+    }

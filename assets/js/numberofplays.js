@@ -8,7 +8,6 @@
             throw new Error('Network response was not ok');
         }
         const data = await response.json(); // Parse the JSON data
-        console.log(data);
 
         const plays = document.createElement("h5");
         const playsContent = document.createTextNode("Number of plays "+data.response.data[3].total_plays);
@@ -21,9 +20,6 @@
         const element = document.getElementById(div);
         element.appendChild(plays);
         element.appendChild(time);
-
-        //document.getElementById(div).innerHTML = "Number of plays "+data.response.data[3].total_plays+secondsToHms(data.response.data[3].total_time);;
-
     } catch (error) {
         console.error('There has been a problem with your fetch operation:', error);
     }

@@ -28,10 +28,12 @@
 									<div id="menu">
 										<ul>
 											<li><a href="index.html">Home</a></li>
-											<li id="ratings"><a href="generic.html">Ratings</a></li>
+											<li><a href="addmovie.html">Add This Weeks Movie</a></li>
 											<li><a href="elements.html">Elements</a></li>
 											<li><a href="signup.html">Sign Up</a></li>
 											<li><a href="login.html">Log In</a></li>
+											<li><a href="#" onclick="logout()">Log Out</a></li>
+
 										</ul>
 									</div>
 								</li>
@@ -56,13 +58,12 @@
 				<!-- Two -->
 					<section id="two" class="wrapper alt style2">
 						<section class="spotlight">
-							<div class="image"><img src="images/thisweeksfilms/10152024/36chambers.jpg" alt="" /></div><div class="content">
+							<div id="overview"></div>
+							<div class="image"><img id="movieImage1" src="images/thisweeksfilms/10152024/36chambers.jpg" alt="" /></div><div class="content">
 								<h3>Matt's Pick</h3>
-								<h2>The 36th Chamber of Shaolin (1978)</h2>
+								<h2 id="movieTitle1">The 36th Chamber of Shaolin (1978)</h2>
 								<div id="numberofplays1"></div>
-								<p>The anti-Ching patriots, under the guidance of Ho Kuang-han, have secretly set up their base in Canton, disguised as school masters. During a brutal Manchu attack, Lui manages to escape, and devotes himself to learning the martial arts in order to seek revenge.
-
-
+								<p id="movieDescription1">The anti-Ching patriots, under the guidance of Ho Kuang-han, have secretly set up their base in Canton, disguised as school masters. During a brutal Manchu attack, Lui manages to escape, and devotes himself to learning the martial arts in order to seek revenge.
 								</p>
 							</div>
 						</section>
@@ -113,7 +114,9 @@
     <div id="result"></div>
 
 		<!-- Scripts -->
-			<script src="assets/js/accessdisplay.js"></script>
+			<!--<script src="assets/js/accessdisplay.js"></script>-->
+			<script src="assets/js/logout.js"></script>
+			<script type="module" src="assets/js/getmovieforuser.js"></script>
 			<script src="assets/js/numberofplays.js"></script>
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.scrollex.min.js"></script>

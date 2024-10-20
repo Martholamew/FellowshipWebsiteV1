@@ -1,0 +1,61 @@
+/* Flex container to align text and image on the same line */
+dialog {
+    width: 70%; /* Set a fixed width */
+    height: 55%; /* Set a fixed height */
+    z-index: 1; /* Lower z-index for primary dialog */
+}
+
+.content {
+    display: flex;
+    align-items: center; /* Vertically center align text and image */
+    gap: 10px; /* Space between the text and image */
+}
+ 
+#moviePoster {
+    width: 40%; /* Adjust width of the image */
+    height: auto; /* Keep aspect ratio */
+}
+
+.button-container {
+    position: absolute; /* Fix the button container at the bottom */
+    bottom: 10px; /* Space from the bottom */
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Space between the buttons */
+    margin-bottom: 10px; /* Space from the bottom */
+}
+
+.originalTitle{
+    color: black;
+    text-align: center;
+}
+
+.confirmation-dialog {
+    width: auto;
+    height: auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 100; /* Higher z-index for confirmation dialog */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Dark overlay behind confirmation dialog */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 99; /* Higher than primary dialog but lower than confirmation dialog */
+    display: none; /* Initially hidden */
+}
