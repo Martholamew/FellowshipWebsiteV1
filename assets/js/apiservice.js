@@ -2,7 +2,7 @@
 const apiservice = {
     baseUrl: window.location.hostname === "localhost"
       ? "http://localhost:8080/"
-      : "https://fellowshipbackend.onrender.com/",
+      : "https://fellowshipbackend.onrender.com/", 
   
     // GET request method
     async get(endpoint) {      
@@ -25,8 +25,6 @@ const apiservice = {
   
     // POST request method 
     async post(endpoint, data) {
-      console.log("here is the endpoint "+endpoint);
-      console.log("here is the data "+data);
       try {
         const response = await fetch(`${this.baseUrl}${endpoint}`, {
           method: "POST",

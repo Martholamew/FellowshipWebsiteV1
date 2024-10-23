@@ -6,14 +6,14 @@
 -->
 <html>
 	<head>
-		<title>Add a Movie</title>
+		<title>Login</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="stylesheet" href="assets/css/moviedialog.css" />
-
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
+
+    
 	<body class="is-preload">
 
 		<!-- Page Wrapper -->
@@ -29,10 +29,10 @@
 									<div id="menu">
 										<ul>
 											<li><a href="index.html">Home</a></li>
-											<li><a href="addmovie.html">Add This Weeks Movie</a></li>
+											<li id="ratings"><a href="generic.html">Ratings</a></li>
 											<li><a href="elements.html">Elements</a></li>
-											<li><a href="signup.html">Sign Up</a></li>
-											<li><a href="login.html">Log In</a></li>
+											<li><a href="#">Sign Up</a></li>
+											<li><a href="#">Log In</a></li>
 										</ul>
 									</div>
 								</li>
@@ -43,43 +43,22 @@
 				<!-- Main -->
 					<article id="main">
 						<header>
-							<h2>Add Movies</h2>
-							<p>This is a work in progress. Please enter the movie you would like to add to this weeks selection</p>
+							<h2>Admin</h2>
+							<p>Are you Matt, Adam or Grant? No? Then why are you here.</p>
 						</header>
 						<section class="wrapper style5">
-							<div class="inner">
-								<section>
-									<h4 id="subheaderentermovie">Enter your choice</h4>
-									<form id="searchMovieForm" >
-										<div class="row gtr-uniform">
-											<div class="col-6 col-12-xsmall">
-												<input type="text" id="search-input" placeholder="Type to search...">
-												<div id="results"></div>
-											</div>
-											<div>
-												<div>
-													<h2 style="color: black;" id="originalTitle"></h2>
-												</div>
-												<div class="content">
-													<h2 style="color: black;" id="originalTitle"></h2>
-														<img id="moviePoster" src="" alt="Image" style="max-width: 10%; height: auto; display: none;">
-														<p style="color: black;" id="movieOverview"></h5>
-												</div>
-											</div>
-											<div class="col-12">
-												<ul class="actions">
-													<li>	<button type="submit">Submit</button>		
-                                                    </li>
-													<li><input type="reset" value="Reset" /></li>
-												</ul>
-											</div>
-										</div>
-									</form>
-								</section>
-
-							</div>
-						</section>
-					</article>
+					
+                            <section>
+                                <h4>Select user</h4>
+                                <form id="users" >
+                                    <label for="usernameSelect">Select a User:</label>
+                                    <select id="usernameSelect">
+                                        <option value="">Loading...</option> <!-- Placeholder while loading -->
+                                    </select>
+                                </form>
+                            </section>
+                        </section>
+					</articlbe>
 
 				<!-- Footer -->
 					<footer id="footer">
@@ -94,13 +73,12 @@
 							<li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
 						</ul>
 					</footer>
+                </div>
+           
 
-			</div>
-  
-  
-
-		<!-- Scripts -->
-		 	<script type ="module" src="assets/js/dialogforsearchingmovie.js"></script> 
+		<!-- Scripts -->-
+         
+            <script type="module" src="assets/js/admin.js"></script>
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.scrollex.min.js"></script>
 			<script src="assets/js/jquery.scrolly.min.js"></script>

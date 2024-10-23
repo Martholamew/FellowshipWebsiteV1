@@ -59,3 +59,20 @@ dialog {
     z-index: 99; /* Higher than primary dialog but lower than confirmation dialog */
     display: none; /* Initially hidden */
 }
+
+#results {
+    margin-top: 10px;
+  }
+  .result-item {
+    padding: 5px;
+    border: 1px solid #ddd;
+    margin-bottom: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .result-item:hover {
+    background-color: #f0f0f0;
+  }
+  .highlighted {
+    background-color: #a72222; /* Highlight color when hovered */
+  }
