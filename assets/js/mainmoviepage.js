@@ -20,6 +20,7 @@ function getMovieForUsers() { // Execute first
     return new Promise((resolve, reject) => {
         for (let i = 0; i < users.length; i++) {
             const apiPromise = apiservice.post(endpoints.movieByUser, users[i]).then(responseText => {
+                console.log(responseText);
                 movieTitles.push(responseText.originalTitle);
                 document.getElementById('movieTitle'+i).textContent = responseText.originalTitle;
                 document.getElementById("movieDescription"+i).textContent = responseText.overview;
@@ -45,13 +46,15 @@ function getMovieForUsers() { // Execute first
 //i hit this after the main page loads so that i can use the titles to find the rating key and generate playback info
 function getPlayInformation(){//execute second
     for(let i=0;i<movieTitles.length;i++){
+        console.log(movieTitles);
+        console.log(endpoints.tautulliPlayCount+movieTitles[i]);
         apiservice.get(endpoints.tautulliPlayCount+movieTitles[i]).then(data => {
             const plays = document.createElement("h5");
-            const playsContent = document.createTextNode("Number of plays "+data.response.data[3].total_plays);
+            const playsContent = document.createTextNode("Number of plays "+data.response.data[i].total_plays);
             plays.appendChild(playsContent);
             
             const time = document.createElement("h5");
-            const timeContent = document.createTextNode(secondsToHms(data.response.data[3].total_time));
+            const timeContent = document.createTextNode(secondsToHms(data.response.data[i].total_time));
             time.appendChild(timeContent);
             
             const element = document.getElementById("numberofplays"+i);//this seems not ideal

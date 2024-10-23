@@ -5,8 +5,6 @@ import endpoints from "./endpoints.js";
 const dialog = document.getElementById('myDialog');
 const movieOverview = document.getElementById('movieOverview');
 const originalTitle = document.getElementById('originalTitle')
-const confirmationDialog = document.getElementById('confirmationDialog');
-const overlay = document.getElementById('overlay');
 const confirmMovieText = document.getElementById('confirmMovieText');
 const input = document.getElementById('search-input');
 const resultsContainer = document.getElementById('results');
@@ -21,40 +19,34 @@ document.getElementById('searchMovieForm').addEventListener('submit', async func
         alert("please log in first");
    }
     else{
-        save();
+      const data = {
+        userId: sessionStorage.getItem("userId"),
+        originalTitle: movie.title,
+        overview: movie.overview,
+        posterURL: endpoints.tmdbPosterUrl+movie.poster_path
+      };
+      apiservice.post(endpoints.saveMovie, data).then(responseText => {
+        if(responseText === true || responseText === "true") {
+          alert("Thank you "+ userName+", your selection has been saved.");
+        }
+        else{
+            alert("We couldn't save your selection. Fuck.");
+        }
+        location.reload();
+      });
     }
 });
-
-// Function to confirm deletion (for demo purposes, it just closes the confirmation)
-function save(){
-  const data = {
-    userId: sessionStorage.getItem("userId"),
-    originalTitle: movie.title,
-    overview: movie.overview,
-    posterURL: endpoints.tmdbPosterUrl+movie.poster_path
-  };
-  apiservice.post(endpoints.saveMovie, data).then(responseText => {
-    if(responseText === true || responseText === "true") {
-      alert("Thank you "+ userName+", your selection has been saved.");
-    }
-    else{
-        alert("We couldn't save your selection. Fuck.");
-    }
-    location.reload();
-  });
-
-};
 
 // Function to display search results
 function displayResults(results) {
   resultsContainer.innerHTML = ''; // Clear previous results
-
   // If there are no results
   if (results.length === 0) {
     resultsContainer.innerHTML = '<p>No results found</p>';
     return;
   }
 
+  results=results.slice(0,10);//only display 10 movies
   // Display each result
   results.forEach(item => {
     const resultItem = document.createElement('div');
@@ -86,12 +78,10 @@ function displayResults(results) {
 // Listen for input changes
 input.addEventListener('input', function() {
   const searchQuery = this.value.trim();
-
   // Only make a request if there's a query
   if (searchQuery.length > 0) {
-    
     apiservice.get(endpoints.searchMovie+"/"+searchQuery).then(data => {
-      displayResults(data.results);;});
+      displayResults(data.results);});
   } else {
     resultsContainer.innerHTML = ''; // Clear results if input is empty
   }
