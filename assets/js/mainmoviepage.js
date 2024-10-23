@@ -2,9 +2,10 @@ import apiservice from "./apiservice.js";
 import endpoints from "./endpoints.js";
 
 //this is hardcoded, but should be pulled from the admin database
-const users = new Array(252, 253, 254);
+const users = new Array(252, 254, 253);
 
-
+//will be populated by the initial call to get movies associated to users
+const movieTitles = new Array();
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -17,10 +18,9 @@ function setUserName(){
 function getMovieForUsers() { // Execute first
     const promises = []; // Array to store all promises from the loop
     return new Promise((resolve, reject) => {
-
         for (let i = 0; i < users.length; i++) {
             const apiPromise = apiservice.post(endpoints.movieByUser, users[i]).then(responseText => {
-                console.log(responseText.posterURL);
+                movieTitles.push(responseText.originalTitle);
                 document.getElementById('movieTitle'+i).textContent = responseText.originalTitle;
                 document.getElementById("movieDescription"+i).textContent = responseText.overview;
                 document.getElementById("movieImage"+i).setAttribute('src', responseText.posterURL);
@@ -44,19 +44,8 @@ function getMovieForUsers() { // Execute first
 
 //i hit this after the main page loads so that i can use the titles to find the rating key and generate playback info
 function getPlayInformation(){//execute second
-
-    //this can be iterated over from the admin page once it is determined how many and which users to display
-    let movieTitle1Element = document.getElementById('movieTitle0');
-    let movieTitle2Element = document.getElementById('movieTitle1');
-    let movieTitle3Element = document.getElementById('movieTitle2');
-    const movieTitle1 = movieTitle1Element.textContent;
-    const movieTitle2 = movieTitle2Element.textContent;
-    const movieTitle3 = movieTitle3Element.textContent;
-    const ratingKeys = new Array(movieTitle1, movieTitle2, movieTitle3);
-    for(let i=0;i<ratingKeys.length;i++){
-        console.log("this is the first one"+ratingKeys[i]);
-
-        apiservice.get(endpoints.tautulliPlayCount+ratingKeys[i]).then(data => {
+    for(let i=0;i<movieTitles.length;i++){
+        apiservice.get(endpoints.tautulliPlayCount+movieTitles[i]).then(data => {
             const plays = document.createElement("h5");
             const playsContent = document.createTextNode("Number of plays "+data.response.data[3].total_plays);
             plays.appendChild(playsContent);

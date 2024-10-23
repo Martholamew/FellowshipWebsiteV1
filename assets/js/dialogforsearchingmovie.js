@@ -8,20 +8,10 @@ const originalTitle = document.getElementById('originalTitle')
 const confirmationDialog = document.getElementById('confirmationDialog');
 const overlay = document.getElementById('overlay');
 const confirmMovieText = document.getElementById('confirmMovieText');
-
-//handling the movies that we get back
-let movies=[];
-let currentIndex = 0;
-
-//eventlisteners for all of the buttons on the page
-document.getElementById('nextItem').addEventListener('click', nextMovie);
-document.getElementById('previousitem').addEventListener('click', previousMovie);
-document.getElementById('showConfirmDialog').addEventListener('click', showConfirmDialog);
-document.getElementById('closeDialog').addEventListener('click', closeDialog);
-document.getElementById('confirmSave').addEventListener('click', save);
-document.getElementById('cancelSave').addEventListener('click', cancel);
-
+const input = document.getElementById('search-input');
+const resultsContainer = document.getElementById('results');
 const userName=sessionStorage.getItem("userName");
+let movie = {};
 
 document.getElementById("subheaderentermovie").textContent="Enter your movie selection, "+userName;
 
@@ -31,82 +21,21 @@ document.getElementById('searchMovieForm').addEventListener('submit', async func
         alert("please log in first");
    }
     else{
-        // Get the movie name from the input
-        const movieName = document.getElementById('movieInput').value;
-
-        // Fetch the movie data
-        apiservice.get(endpoints.searchMovie+"/"+movieName).then(data => {
-            openDialog(data);});
+        save();
     }
 });
 
-function openDialog(movieData) {
-  movies=Array.from(movieData.results);
-  currentIndex = 0; // Reset to the first item
-  displayCurrentItem();
-  dialog.showModal();
-}
-
-function nextMovie(){
-    currentIndex++; // Move to the next index
-  if (currentIndex < movies.length) {
-      displayCurrentItem();
-  } else {
-      currentIndex = 0; // Reset the index
-      displayCurrentItem();
-  }
-};
-
-function previousMovie(){
-  currentIndex--; // Move to the previous index
-if (currentIndex < movies.length && currentIndex > 0) {
-    displayCurrentItem();
-} else {
-    currentIndex = 0; //reset the index
-    displayCurrentItem();
-}
-};
-
-
-function closeDialog() {
-  dialog.close();
-}
-
-function displayCurrentItem() {
-  originalTitle.innerHTML = movies[currentIndex].title;
-  movieOverview.textContent = movies[currentIndex].overview;
-  moviePoster.src = endpoints.tmdbPosterUrl+movies[currentIndex].poster_path;
-  moviePoster.style.display = "block"; // Make sure the image is visible
-}
-
-
-function showConfirmDialog(){
-  closeDialog();
-  overlay.style.display = 'block'; // Show the dark overlay
-  confirmationDialog.style.display = 'flex'; // Show the confirmation dialog
-  confirmMovieText.innerHTML=="User, are you sure "+movies[currentIndex].title+" is your pick of the week?";
-
-};
-
-// Function to close the confirmation dialog
-function cancel(){
-  overlay.style.display = 'none'; // Hide the overlay
-  confirmationDialog.style.display = 'none'; // Hide the confirmation dialog
-};
-
 // Function to confirm deletion (for demo purposes, it just closes the confirmation)
 function save(){
-  overlay.style.display = 'none'; // Hide the overlay
-  confirmationDialog.style.display = 'none'; // Hide the confirmation dialog
   const data = {
     userId: sessionStorage.getItem("userId"),
-    originalTitle: movies[currentIndex].title,
-    overview: movies[currentIndex].overview,
-    posterURL: endpoints.tmdbPosterUrl+movies[currentIndex].poster_path
+    originalTitle: movie.title,
+    overview: movie.overview,
+    posterURL: endpoints.tmdbPosterUrl+movie.poster_path
   };
   apiservice.post(endpoints.saveMovie, data).then(responseText => {
     if(responseText === true || responseText === "true") {
-      alert("we did it");
+      alert("Thank you "+ userName+", your selection has been saved.");
     }
     else{
         alert("We couldn't save your selection. Fuck.");
@@ -115,3 +44,55 @@ function save(){
   });
 
 };
+
+// Function to display search results
+function displayResults(results) {
+  resultsContainer.innerHTML = ''; // Clear previous results
+
+  // If there are no results
+  if (results.length === 0) {
+    resultsContainer.innerHTML = '<p>No results found</p>';
+    return;
+  }
+
+  // Display each result
+  results.forEach(item => {
+    const resultItem = document.createElement('div');
+    resultItem.classList.add('result-item');
+    resultItem.textContent = item.title; 
+
+    resultItem.addEventListener('click', function() {
+      movie=item;
+      input.value = item.title; // Set the input field to the selected result
+      originalTitle.innerHTML = item.title;
+      movieOverview.textContent = item.overview;
+      moviePoster.src = endpoints.tmdbPosterUrl+item.poster_path;
+      moviePoster.style.display = "block"; // Make sure the image is visible
+      resultsContainer.innerHTML = ''; // Clear the results after selection
+    }); 
+
+    resultItem.addEventListener('mouseover', function() {
+      resultItem.classList.add('highlighted'); // Add highlighted class
+    });
+
+    resultItem.addEventListener('mouseout', function() {
+      resultItem.classList.remove('highlighted'); // Remove highlighted class
+    });
+    
+    resultsContainer.appendChild(resultItem);
+  });
+}
+
+// Listen for input changes
+input.addEventListener('input', function() {
+  const searchQuery = this.value.trim();
+
+  // Only make a request if there's a query
+  if (searchQuery.length > 0) {
+    
+    apiservice.get(endpoints.searchMovie+"/"+searchQuery).then(data => {
+      displayResults(data.results);;});
+  } else {
+    resultsContainer.innerHTML = ''; // Clear results if input is empty
+  }
+});
