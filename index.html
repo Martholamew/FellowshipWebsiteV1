@@ -45,12 +45,13 @@
 			<section id="banner">
 				<div class="inner">
 					<h2>Fellowship of the Movie Club</h2>
-					<p>Welcome to the movie club. We have specifically handpicked these selections for maximum entertainment<br />
-					</p>
-					<p><br />
-					</p>
+					<p id="welcomeText">Welcome to the movie club. We have specifically handpicked these selections for maximum entertainment</p>
 				</div>
-				<p >The theme for this week is Martial arts. Please enjoy our selections.</p>
+				
+				<div class="inner">
+					<p id="movieGenre">The theme for this week is Martial arts.</p>
+					<p if="themeAffirmation">Please enjoy our selections.</p>
+				</div>
 			</section>
 
 			<!-- Two -->
@@ -101,6 +102,7 @@
 		<!-- Scripts -->
 		<script src="assets/js/logout.js"></script>
 		<script type="module" src="assets/js/mainmoviepage.js"></script>
+		<script type="module" src="assets/js/generateindextext.js"></script>
 		<script src="assets/js/jquery.min.js"></script>
 		<script src="assets/js/jquery.scrollex.min.js"></script>
 		<script src="assets/js/jquery.scrolly.min.js"></script>

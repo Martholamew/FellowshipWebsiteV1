@@ -7,7 +7,10 @@ const endpoints = {
     userLogin: "userslogin",
     userSignUp: "userssignup",
     tautulliPlayCount: "tautulli/playcount?movieTitle=",
-    users: "users"
+    users: "users",
+    textValues: "text",
+    updateText: "updateText",
+    getTextByName: "textByname?nameOfValue="
 };
 
 export default endpoints;
