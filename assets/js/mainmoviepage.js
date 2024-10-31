@@ -9,59 +9,43 @@ const movieTitles = new Array();
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    getMovieForUsers().then(getPlayInformation);
+    getMovieForUsers();
 });
 
 function setUserName(){
 }
 
 function getMovieForUsers() { // Execute first
-    const promises = []; // Array to store all promises from the loop
-    return new Promise((resolve, reject) => {
         for (let i = 0; i < users.length; i++) {
-            const apiPromise = apiservice.post(endpoints.movieByUser, users[i]).then(responseText => {
-                console.log(responseText);
-                movieTitles.push(responseText.originalTitle);
-                document.getElementById('movieTitle'+i).textContent = responseText.originalTitle;
-                document.getElementById("movieDescription"+i).textContent = responseText.overview;
-                document.getElementById("movieImage"+i).setAttribute('src', responseText.posterURL);
-            }).catch(error => {
-                console.error('Error fetching movie data:', error);
-                reject(error); // Reject the promise if any API call fails
-            });
-            promises.push(apiPromise); // Store the promise in the array
+            const apiPromise = apiservice.post(endpoints.movieByUser, users[i])
+                .then(responseText => {
+                    document.getElementById('movieTitle' + i).textContent = responseText.originalTitle;
+                    document.getElementById("movieDescription" + i).textContent = responseText.overview;
+                    document.getElementById("movieImage" + i).setAttribute('src', responseText.posterURL);
+                    getPlayInformation(i,responseText.originalTitle)
+                })
+                .catch(error => {
+                    console.error('Error fetching movie data:', error);
+                    reject(error); // Reject the promise if any API call fails
+                });
         }
+    };
 
-        // Wait for all API calls to complete
-        Promise.all(promises)
-            .then(() => {
-                resolve(); // Resolve the main promise after all API calls complete
-            })
-            .catch(error => {
-                reject(error); // Reject the main promise if any error occurs
-            });
-    });
-}
-
-//i hit this after the main page loads so that i can use the titles to find the rating key and generate playback info
-function getPlayInformation(){//execute second
-    for(let i=0;i<movieTitles.length;i++){
-        console.log(movieTitles);
-        console.log(endpoints.tautulliPlayCount+movieTitles[i]);
-        apiservice.get(endpoints.tautulliPlayCount+movieTitles[i]).then(data => {
+//get the playback info once we have queried for the rating_key
+function getPlayInformation(index, movieTitle){        
+        apiservice.get(endpoints.tautulliPlayCount+movieTitle).then(data => {
             const plays = document.createElement("h5");
-            const playsContent = document.createTextNode("Number of plays "+data.response.data[i].total_plays);
+            const playsContent = document.createTextNode("Number of plays "+data.response.data[3].total_plays);
             plays.appendChild(playsContent);
             
             const time = document.createElement("h5");
-            const timeContent = document.createTextNode(secondsToHms(data.response.data[i].total_time));
+            const timeContent = document.createTextNode(secondsToHms(data.response.data[3].total_time));
             time.appendChild(timeContent);
             
-            const element = document.getElementById("numberofplays"+i);//this seems not ideal
+            const element = document.getElementById("numberofplays"+index);//this seems not ideal
             element.appendChild(plays);
             element.appendChild(time);
-        })
-    }
+        })    
 }
 
 function secondsToHms(d) {
