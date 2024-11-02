@@ -6,7 +6,8 @@ const welcomeText = document.getElementById("welcomeText");
 //these names should stay static. Could be moved to a constants file if need be, like the endpoints.js
 const textNames = [
     "welcomeText",
-    "movieGenre"
+    "movieGenre",
+    "themeAffirmation"
 ]
 
 document.addEventListener('DOMContentLoaded', () => {

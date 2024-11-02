@@ -37,10 +37,10 @@ const apiservice = {
         if (!response.ok) {
           throw new Error(`Error: ${response.status} ${response.statusText}`);
         }
-  
-        // Parse the JSON response
-        const responseData = await response.json();
-        return responseData;
+
+          const responseData = await response.json();
+          return responseData;
+      
       } catch (error) {
         console.error("Error:", error);
         throw error; 

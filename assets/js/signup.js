@@ -5,22 +5,16 @@ document.getElementById('dataform').addEventListener('submit', function (event) 
     event.preventDefault(); // Prevent default form submission
     const data = {
         name: document.getElementById('name').value,
-        email: document.getElementById('email').value
+        email: document.getElementById('email').value,
+        password: document.getElementById('password').value
+
     };
-
    apiservice.post(endpoints.userSignUp, data).then(responseText => {
-        var name =document.getElementById('name').value;
-        if(responseText === true || responseText === "true"){
-            alert("thanks for signing up "+ name);
+        alert(responseText.message);
+        if(responseText.userId!=0){
             sessionStorage.setItem("registereduser", responseText);
-            sessionStorage.setItem("userName", name)
+            sessionStorage.setItem("userName", responseText.name);
         }
-        else{
-            alert("You've already signed up " + name)
-        }
-        
-        //location.reload();
-
     })
     .catch((error) => {
         console.error('Error:', error);
