@@ -1,13 +1,13 @@
 
 const endpoints = {
     tmdbPosterUrl: "https://image.tmdb.org/t/p/original/",
-    saveMovie: "currentmovie/saveMovie",
+    saveMovie: "currentmovie/savemovie",
     searchMovie:"tmdb/searchmovie",
     movieByUser: "currentmovie/moviebyuser",
-    userLogin: "user/userslogin",
-    userSignUp: "user/userssignup",
+    userLogin: "user/login",
+    userSignUp: "user/register",
     tautulliPlayCount: "tautulli/playcount?movieTitle=",
-    users: "user/users",
+    users: "user/allusers",
     textValues: "text/get",
     updateText: "text/updatetext",
     getTextByName: "text/textbyname?nameOfValue="

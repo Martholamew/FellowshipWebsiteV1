@@ -4,7 +4,7 @@ import endpoints from "./endpoints.js";
 document.getElementById('dataform').addEventListener('submit', function (event) {
     event.preventDefault(); // Prevent default form submission
     const data = {
-        name: document.getElementById('name').value,
+        userName: document.getElementById('name').value,
         email: document.getElementById('email').value,
         password: document.getElementById('password').value
 

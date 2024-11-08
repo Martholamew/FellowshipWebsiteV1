@@ -1,6 +1,8 @@
 import apiservice from "./apiservice.js";
 import endpoints from "./endpoints.js";
 
+console.log("admin.js loaded");
+
 const selectedText = document.getElementById("textSelect");
 const nameOfValue = document.getElementById("nameOfValue");
 const textValue = document.getElementById("textValue");
@@ -13,20 +15,22 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-document.getElementById('textValues').addEventListener('submit', function (event) {
-    event.preventDefault(); // Prevent default form submission
-    const data = {
-        nameOfValue: nameOfValue.innerHTML,
-        textValue: textValue.value,
-        id: textId.textContent
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('textValues');
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        const data = {
+            nameOfValue: document.getElementById("nameOfValue").innerHTML,
+            textValue: document.getElementById("textValue").value,
+            id: document.getElementById("textId").textContent
+        };
 
-    };
-    console.log("thisis the data "+data);
-    apiservice.post(endpoints.updateText,data).then(responseText => {
-       if(responseText == true){
-        alert("change to text was made");
-       }
-    })
+        apiservice.post(endpoints.updateText, data).then(responseText => {
+            if (responseText === true) {
+                alert("Change to text was made");
+            }
+        });
+    });
 });
 
 

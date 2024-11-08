@@ -12,9 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
     getMovieForUsers();
 });
 
-function setUserName(){
-}
-
 function getMovieForUsers() { // Execute first
         for (let i = 0; i < users.length; i++) {
             const apiPromise = apiservice.post(endpoints.movieByUser, users[i])
@@ -35,7 +32,7 @@ function getMovieForUsers() { // Execute first
 function getPlayInformation(index, movieTitle){        
         apiservice.get(endpoints.tautulliPlayCount+movieTitle).then(data => {
             const plays = document.createElement("h5");
-            const playsContent = document.createTextNode("Number of plays "+data.response.data[3].total_plays);
+            const playsContent = document.createTextNode("Number of plays "+data.response.data[3].total_plays);//hardcoding three because this is the index with the total plays from json 
             plays.appendChild(playsContent);
             
             const time = document.createElement("h5");

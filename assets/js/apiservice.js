@@ -1,4 +1,3 @@
-// apiService.js
 const apiservice = {
     baseUrl: window.location.hostname === "localhost"
       ? "http://localhost:8080/"
@@ -7,9 +6,16 @@ const apiservice = {
     // GET request method
     async get(endpoint) {      
       try {
+        const gettoken = sessionStorage.getItem("jwtToken"); // Or from sessionStorage if stored there
+        console.log("tokie time "+gettoken)
         const response = await fetch(`${this.baseUrl}${endpoint}`, {
           method: "GET",
-        });
+          headers: {                 // Use the headers object to add headers
+              "Authorization": `Bearer ${gettoken}`,
+              "Content-Type": "application/json",
+            },
+            credentials: 'include'
+      });
           if (!response.ok) {
           throw new Error(`Error: ${response.status} ${response.statusText}`);
         }
@@ -26,10 +32,12 @@ const apiservice = {
     // POST request method 
     async post(endpoint, data) {
       try {
+        const posttoken = sessionStorage.getItem("jwtToken"); 
         const response = await fetch(`${this.baseUrl}${endpoint}`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            "Authorization": `Bearer ${posttoken}`
           },
           body: JSON.stringify(data), 
         });
@@ -37,7 +45,6 @@ const apiservice = {
         if (!response.ok) {
           throw new Error(`Error: ${response.status} ${response.statusText}`);
         }
-
           const responseData = await response.json();
           return responseData;
       
@@ -47,6 +54,8 @@ const apiservice = {
       }
     }
   };
+
+ 
   
-  export default apiservice;
+export default apiservice;
   

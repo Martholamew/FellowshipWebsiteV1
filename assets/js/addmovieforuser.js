@@ -8,17 +8,17 @@ const originalTitle = document.getElementById('originalTitle')
 const confirmMovieText = document.getElementById('confirmMovieText');
 const input = document.getElementById('search-input');
 const resultsContainer = document.getElementById('results');
-const userName=sessionStorage.getItem("userName");
 let movie = {};
 
-document.getElementById("subheaderentermovie").textContent="Enter your movie selection, "+userName;
+document.getElementById("subheaderentermovie").textContent="Enter your movie selection, "+sessionStorage.getItem("userName");
 
 document.getElementById('searchMovieForm').addEventListener('submit', async function(event) {
     event.preventDefault();  // Prevent the default form submission
-   if(userName==null){
+   if(sessionStorage.getItem("userIs")){
         alert("please log in first");
    }
     else{
+      console.log("user ID "+sessionStorage.getItem("userId"));
       const data = {
         userId: sessionStorage.getItem("userId"),
         originalTitle: movie.title,
