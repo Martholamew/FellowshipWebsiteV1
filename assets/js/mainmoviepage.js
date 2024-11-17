@@ -2,17 +2,35 @@ import apiservice from "./apiservice.js";
 import endpoints from "./endpoints.js";
 
 //this is hardcoded, but should be pulled from the admin database
-const users = new Array(252, 254, 253);
 
 //will be populated by the initial call to get movies associated to users
 const movieTitles = new Array();
 
 
-document.addEventListener('DOMContentLoaded', () => {
-    getMovieForUsers();
+document.addEventListener('DOMContentLoaded', async () => {
+    const users = await getUserDisplayOrder(); // Wait for the users to be populated
+    getMovieForUsers(users); // Then execute the function with the populated array
 });
 
-function getMovieForUsers() { // Execute first
+async function getUserDisplayOrder() {
+    const users = new Array();
+
+    // Wait for the API call to finish before processing the result
+    const displayOrders = await apiservice.get(endpoints.getDisplayOrder);
+    
+    // Sort the displayOrders by displayOrder
+    displayOrders.sort((a, b) => a.displayOrder - b.displayOrder);
+
+    // Push the userId of each order into the users array
+    displayOrders.forEach((order) => {
+        users.push(order.userId);
+    });
+
+    return users; // Return the populated array after the asynchronous operation
+}
+
+function getMovieForUsers(users) {
+    console.log("in the get movies "+users);
         for (let i = 0; i < users.length; i++) {
             const apiPromise = apiservice.post(endpoints.movieByUser, users[i])
                 .then(responseText => {

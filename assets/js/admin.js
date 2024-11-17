@@ -27,6 +27,10 @@ document.addEventListener('DOMContentLoaded', function () {
         apiservice.post(endpoints.updateText, data).then(responseText => {
             if (responseText === true) {
                 alert("Change to text was made");
+                location.reload();
+            }
+            else{
+                alert("There was a problem");
             }
         });
     });
@@ -34,8 +38,30 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 document.addEventListener('DOMContentLoaded', function () {
-    const form = document.getElementById('textValues');
-    form.addEventListener('displayOrders', function (event) {
+    const form = document.getElementById('displayOrders');
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        var selectedOption1 = {
+            userId: document.getElementById('displayOrder1').value,
+            displayOrder: 1,
+            id: 1
+            };
+        var selectedOption2 = {
+            userId: document.getElementById('displayOrder2').value,
+            displayOrder: 2,
+            id: 2
+            };
+        var selectedOption3 = {
+            userId: document.getElementById('displayOrder3').value,
+            displayOrder: 3,
+            id: 3
+        };
+        const selectedOptions=[selectedOption1,selectedOption2,selectedOption3]
+        apiservice.post(endpoints.updateDisplayOrder, selectedOptions).then(responseText => {
+            if (responseText === true) {
+                alert("Change to order succeeded");
+            }
+        })
     });
 });
 
@@ -77,8 +103,10 @@ function getDisplayOrder() {
 
         // After dropdowns are populated, set the selected option based on displayOrders
         apiservice.get(endpoints.getDisplayOrder).then(displayOrders => {
-            displayOrders.forEach((order, index) => {
-                const dropdown = dropDowns[index];
+            displayOrders.sort((a, b) => a.displayOrder - b.displayOrder);
+
+            displayOrders.forEach((order) => {
+                const dropdown = dropDowns[order.displayOrder-1];
                 if (dropdown) {
                     const matchingOption = dropdown.querySelector(`option[value="${String(order.userId)}"]`);
                     if (matchingOption) {

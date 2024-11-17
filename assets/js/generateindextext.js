@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function populateText(){
     for (const textName of textNames) {
         apiservice.get(endpoints.getTextByName+textName).then(data => {
+            console.log(data.textValue);
             document.getElementById(textName).textContent=data.textValue;        
         });
     }   

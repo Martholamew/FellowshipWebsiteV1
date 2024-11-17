@@ -11,7 +11,9 @@ const endpoints = {
     textValues: "text/get",
     updateText: "text/updatetext",
     getTextByName: "text/textbyname?nameOfValue=",
-    getDisplayOrder: "admin/getdisplayorder"
+    getDisplayOrder: "admin/getdisplayorder",
+    updateDisplayOrder: "admin/updatedisplayorder"
+
 };
 
 export default endpoints;
