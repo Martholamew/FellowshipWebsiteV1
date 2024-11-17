@@ -18,7 +18,6 @@ document.getElementById('searchMovieForm').addEventListener('submit', async func
         alert("please log in first");
    }
     else{
-      console.log("user ID "+sessionStorage.getItem("userId"));
       const data = {
         userId: sessionStorage.getItem("userId"),
         originalTitle: movie.title,

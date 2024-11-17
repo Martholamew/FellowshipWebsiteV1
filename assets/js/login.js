@@ -10,7 +10,6 @@ document.getElementById('dataform').addEventListener('submit', function (event) 
     apiservice.post(endpoints.userLogin,data).then(responseText => {
         alert(responseText.message);
         const token = responseText.token; 
-        console.log(responseText);
         if(token!=null){
           const decodedToken = parseJwt(token);
           sessionStorage.setItem("jwtToken", token); 

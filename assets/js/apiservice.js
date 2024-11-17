@@ -7,7 +7,6 @@ const apiservice = {
     async get(endpoint) {      
       try {
         const gettoken = sessionStorage.getItem("jwtToken"); // Or from sessionStorage if stored there
-        console.log("tokie time "+gettoken)
         const response = await fetch(`${this.baseUrl}${endpoint}`, {
           method: "GET",
           headers: {                 // Use the headers object to add headers

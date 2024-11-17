@@ -10,7 +10,8 @@ const endpoints = {
     users: "user/allusers",
     textValues: "text/get",
     updateText: "text/updatetext",
-    getTextByName: "text/textbyname?nameOfValue="
+    getTextByName: "text/textbyname?nameOfValue=",
+    getDisplayOrder: "admin/getdisplayorder"
 };
 
 export default endpoints;
