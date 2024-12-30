@@ -9,12 +9,13 @@ const confirmMovieText = document.getElementById('confirmMovieText');
 const input = document.getElementById('search-input');
 const resultsContainer = document.getElementById('results');
 let movie = {};
+const userName = sessionStorage.getItem("userName"); 
 
-document.getElementById("subheaderentermovie").textContent="Enter your movie selection, "+sessionStorage.getItem("userName");
+document.getElementById("subheaderentermovie").textContent="Enter your movie selection, "+userName;
 
 document.getElementById('searchMovieForm').addEventListener('submit', async function(event) {
     event.preventDefault();  // Prevent the default form submission
-   if(sessionStorage.getItem("userIs")){
+   if(sessionStorage.getItem("userId")){
         alert("please log in first");
    }
     else{

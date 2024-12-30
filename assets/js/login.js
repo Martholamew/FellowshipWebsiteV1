@@ -14,8 +14,7 @@ document.getElementById('dataform').addEventListener('submit', function (event) 
           const decodedToken = parseJwt(token);
           sessionStorage.setItem("jwtToken", token); 
           sessionStorage.setItem("userId", decodedToken.userId); 
-          sessionStorage.setItem("userName", decodedToken.userName); 
-
+          sessionStorage.setItem("userName", responseText.userName); 
         }
     })
 });

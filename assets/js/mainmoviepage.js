@@ -26,11 +26,10 @@ async function getUserDisplayOrder() {
         users.push(order.userId);
     });
 
-    return users; // Return the populated array after the asynchronous operation
+    return users; 
 }
 
 function getMovieForUsers(users) {
-    console.log("in the get movies "+users);
         for (let i = 0; i < users.length; i++) {
             const apiPromise = apiservice.post(endpoints.movieByUser, users[i])
                 .then(responseText => {
