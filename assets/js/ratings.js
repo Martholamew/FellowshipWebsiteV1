@@ -30,11 +30,8 @@ function getCurrentRatings(users){
             )
         }
 }
-
-function getMovieForUsersandGenerateHTML(users) { //this is messy, should refactor
-    // Loop through each user
+function getMovieForUsersandGenerateHTML(users) {
     users.forEach(user => {
-        // Get movie data for the user
         apiservice.post(endpoints.movieByUser, user)
             .then(responseText => {
                 const movieTitle = responseText.originalTitle;
@@ -47,10 +44,10 @@ function getMovieForUsersandGenerateHTML(users) { //this is messy, should refact
                     movieId: movieId
                 };
 
-                // Get the current rating for the movie
-                apiservice.post(endpoints.getCurrentRatings, userMovie)
+                apiservice.post(endpoints.getRating, userMovie)
                     .then(ratingDTO => {
-                        const ratingScore = ratingDTO ? ratingDTO : 0; // Default to 0 if no rating exists
+                        const ratingScore = ratingDTO ? ratingDTO : 0;
+
                         // Create the movie container
                         const movieContainer = document.createElement('div');
                         movieContainer.classList.add('movie-item');
@@ -72,8 +69,8 @@ function getMovieForUsersandGenerateHTML(users) { //this is messy, should refact
                         const titleAndRatingDiv = document.createElement('div');
                         titleAndRatingDiv.style.display = 'flex';
                         titleAndRatingDiv.style.flexDirection = 'column';
+                        titleAndRatingDiv.style.alignItems = 'center';  // Center the contents
 
-                        // Create the rating label
                         const ratingLabel = document.createElement('label');
                         ratingLabel.textContent = 'Rate this movie:';
                         titleAndRatingDiv.appendChild(ratingLabel);
@@ -84,24 +81,25 @@ function getMovieForUsersandGenerateHTML(users) { //this is messy, should refact
                         slider.min = '0';
                         slider.max = '5';
                         slider.step = '0.1';
-                        slider.value = ratingScore; // Set the value to the fetched rating
+                        slider.value = ratingScore;
                         slider.classList.add('slider');
                         slider.style.marginBottom = '10px';
-                        slider.style.width = 'calc(100% - 20px)'; // Ensure it doesn't touch the right edge
+                        slider.style.width = 'calc(100% - 20px)';
                         slider.style.marginRight = '10px';
 
                         // Display the slider value
                         const sliderValue = document.createElement('div');
                         sliderValue.textContent = slider.value;
                         sliderValue.classList.add('slider-value');
-                        slider.addEventListener('input', function() {
+                        slider.addEventListener('input', function () {
                             sliderValue.textContent = slider.value;
                         });
 
-                        // Create the submit button for the rating
+                        // Create the submit button and center it
                         const submitButton = document.createElement('button');
                         submitButton.textContent = 'Submit Rating';
-                        submitButton.onclick = function() {
+                        submitButton.style.marginTop = '10px'; // Optional: Add spacing between slider and button
+                        submitButton.onclick = function () {
                             const rating = slider.value;
                             if (userId) {
                                 const ratingData = {
@@ -122,7 +120,7 @@ function getMovieForUsersandGenerateHTML(users) { //this is messy, should refact
                             }
                         };
 
-                        // Append the slider and submit button to the title and rating div
+                        // Append the slider, value, and button to the rating section
                         titleAndRatingDiv.appendChild(slider);
                         titleAndRatingDiv.appendChild(sliderValue);
                         titleAndRatingDiv.appendChild(submitButton);
@@ -136,7 +134,6 @@ function getMovieForUsersandGenerateHTML(users) { //this is messy, should refact
                     })
                     .catch(error => {
                         console.error('Error fetching the rating:', error);
-                        // You can choose to set a default rating value if no rating is found
                     });
             })
             .catch(error => {
