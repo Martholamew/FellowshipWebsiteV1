@@ -12,8 +12,9 @@ const endpoints = {
     updateText: "text/updatetext",
     getTextByName: "text/textbyname?nameOfValue=",
     getDisplayOrder: "admin/getdisplayorder",
-    updateDisplayOrder: "admin/updatedisplayorder"
-
+    updateDisplayOrder: "admin/updatedisplayorder",
+    saveRating: "rating/saveRating",
+    getRating: "rating/getRating"
 };
 
 export default endpoints;
