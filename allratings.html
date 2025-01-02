@@ -5,15 +5,18 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
+
 	<head>
-		<title>Login</title>
+		<title>All Ratings</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
+        <link rel="stylesheet" href="assets/css/ratings.css" />
 
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
     
+	</head>
+   
 	<body class="is-preload">
 
 		<!-- Page Wrapper -->
@@ -30,8 +33,6 @@
 										<ul>
 											<li><a href="index.html">Home</a></li>
 											<li><a href="addmovie.html">Add This Weeks Movie</a></li>
-											<li><a href="ratings.html">Rate This Weeks Movies</a></li>
-											<li><a href="allratings.html">View All Ratings</a></li>
 											<li><a href="signup.html">Sign Up</a></li>
 											<li><a href="login.html">Log In</a></li>
 											<li><a href="#" id="logout">Log Out</a></li>
@@ -46,33 +47,22 @@
 				<!-- Main -->
 					<article id="main">
 						<header>
-							<h2>Login Page</h2>
-							<p>If you are a member of the fellowship, please log in to access all features</p>
+							<h2>All Ratings</h2>
+							<p>Have a look at what we've thought about all of our viewings</p>
 						</header>
-						<section class="wrapper style5">
-							<div class="inner">
-								<section>
-									<h4>Enter your login information</h4>
-									<form id="dataform" >
-										<div class="row gtr-uniform">
-											<div class="col-6 col-12-xsmall">
-												<input type="text" name="name" id="name" value="" placeholder="Name" required/>
-											</div>
-											<div class="col-6 col-12-xsmall">
-												<input type="password" name="password" id="password" value="" placeholder="Password" required/>
-											</div>
-											<div class="col-12">
-												<ul class="actions">
-													<li>	<button type="submit">Submit</button>		
-                                                    </li>
-													<li><input type="reset" value="Reset" /></li>
-												</ul>
-											</div>
-										</div>
-									</form>
-								</section>
 
-								
+                        <section>
+                            <table id="movie-table">
+                                <thead>
+                                    <tr id="header-row">
+                                        <!-- User names will go here -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Movie categories and ratings will be added dynamically -->
+                                </tbody>
+                            </table>
+                        </section>
 					</article>
 
 				<!-- Footer -->
@@ -88,20 +78,19 @@
 							<li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
 						</ul>
 					</footer>
-                    			</div>
+                </div>
            
 
-		<!-- Scripts -->
-          
-            <script src="assets/js/accessdisplay.js"></script>
-            <script type="module" src="assets/js/login.js"></script>
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+		<!-- Scripts -->-
+         
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+        <script type="module" src="assets/js/allratings.js"></script>
 
 	</body>
 </html>

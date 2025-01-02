@@ -14,7 +14,8 @@ const endpoints = {
     getDisplayOrder: "admin/getdisplayorder",
     updateDisplayOrder: "admin/updatedisplayorder",
     saveRating: "rating/saveRating",
-    getRating: "rating/getRating"
+    getRating: "rating/getRating",
+    getAllRatingsWithUser: "rating/getAllRatingsWithUser"
 };
 
 export default endpoints;

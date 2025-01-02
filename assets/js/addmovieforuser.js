@@ -10,32 +10,40 @@ const input = document.getElementById('search-input');
 const resultsContainer = document.getElementById('results');
 let movie = {};
 const userName = sessionStorage.getItem("userName"); 
+const textName = "category";
 
-document.getElementById("subheaderentermovie").textContent="Enter your movie selection, "+userName;
-
-document.getElementById('searchMovieForm').addEventListener('submit', async function(event) {
-    event.preventDefault();  // Prevent the default form submission
-   if(sessionStorage.getItem("userId")){
-        alert("please log in first");
-   }
-    else{
-      const data = {
-        userId: sessionStorage.getItem("userId"),
-        originalTitle: movie.title,
-        overview: movie.overview,
-        posterURL: endpoints.tmdbPosterUrl+movie.poster_path
-      };
-      apiservice.post(endpoints.saveMovie, data).then(responseText => {
-        if(responseText === true || responseText === "true") {
-          alert("Thank you "+ userName+", your selection has been saved.");
-        }
-        else{
-            alert("We couldn't save your selection. Fuck.");
-        }
-        location.reload();
-      });
-    }
+document.addEventListener('DOMContentLoaded', function () {
+  apiservice.get(endpoints.getTextByName+textName).then(category => {
+    document.getElementById("subheaderentermovie").textContent="Enter your movie selection, "+userName+". The current category is "+category.textValue+". (Make sure this is correct in order to group your rating appropriately)";
+    document.getElementById('searchMovieForm').addEventListener('submit', async function(event) {
+      event.preventDefault();  // Prevent the default form submission
+     if(!sessionStorage.getItem("userId")){
+          alert("please log in first");
+     }
+      else{
+        const data = {
+          userId: sessionStorage.getItem("userId"),
+          originalTitle: movie.title,
+          overview: movie.overview,
+          posterURL: endpoints.tmdbPosterUrl+movie.poster_path,
+          category: category.textValue
+        };
+        apiservice.post(endpoints.saveMovie, data).then(responseText => {
+          if(responseText === true || responseText === "true") {
+            alert("Thank you "+ userName+", your selection has been saved.");
+          }
+          else{
+              alert("We couldn't save your selection. Fuck.");
+          }
+          location.reload();
+        });
+      }
+  });
+  });
+  
 });
+
+
 
 // Function to display search results
 function displayResults(results) {
